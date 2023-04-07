@@ -14,13 +14,17 @@ st.title("Dataset Visualizer")
 # App settings
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+# Download iris.csv
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+data = pd.read_csv(url, header=None)
+data.to_csv('iris.csv', index=False)
 
 # asking user to upload the dataset, defaul value iris.csv
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv", key="1")
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 else:
-    df = pd.read_csv("iris.csv")
+    df = pd.read_csv('iris.csv', header=None)
 
 # asking user whether to visualize the dataset or not
 if st.checkbox("Visualize the dataset"):
